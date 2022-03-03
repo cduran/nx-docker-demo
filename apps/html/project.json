@@ -1,14 +1,14 @@
 {
-  "root": "apps/api",
-  "sourceRoot": "apps/api/src",
+  "root": "apps/html",
+  "sourceRoot": "apps/html/src",
   "projectType": "application",
   "targets": {
     "deploy": {
       "builder": "@nrwl/workspace:run-commands",
       "options": {
         "commands": [
-          "nx build api",
-          "docker build -f ./apps/api/Dockerfile . -t api"
+          "nx build html",
+          "docker build -f ./apps/html/Dockerfile . -t html"
         ],
         "parallel": false
       }
@@ -17,10 +17,10 @@
       "executor": "@nrwl/node:build",
       "outputs": ["{options.outputPath}"],
       "options": {
-        "outputPath": "dist/apps/api",
-        "main": "apps/api/src/main.ts",
-        "tsConfig": "apps/api/tsconfig.app.json",
-        "assets": ["apps/api/src/assets"],
+        "outputPath": "dist/apps/html",
+        "main": "apps/html/src/main.ts",
+        "tsConfig": "apps/html/tsconfig.app.json",
+        "assets": ["apps/html/src/assets"],
         "generatePackageJson": true
       },
       "configurations": {
@@ -30,8 +30,8 @@
           "inspect": false,
           "fileReplacements": [
             {
-              "replace": "apps/api/src/environments/environment.ts",
-              "with": "apps/api/src/environments/environment.prod.ts"
+              "replace": "apps/html/src/environments/environment.ts",
+              "with": "apps/html/src/environments/environment.prod.ts"
             }
           ]
         }
@@ -40,21 +40,21 @@
     "serve": {
       "executor": "@nrwl/node:execute",
       "options": {
-        "buildTarget": "api:build"
+        "buildTarget": "html:build"
       }
     },
     "lint": {
       "executor": "@nrwl/linter:eslint",
       "outputs": ["{options.outputFile}"],
       "options": {
-        "lintFilePatterns": ["apps/api/**/*.ts"]
+        "lintFilePatterns": ["apps/html/**/*.ts"]
       }
     },
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": ["coverage/apps/api"],
+      "outputs": ["coverage/apps/html"],
       "options": {
-        "jestConfig": "apps/api/jest.config.js",
+        "jestConfig": "apps/html/jest.config.js",
         "passWithNoTests": true
       }
     }
