@@ -15,8 +15,10 @@ npx nx run-many --target=serve --projects=api,html --parallel
 npx nx run-many --target=build --projects=api,html --parallel
 ```
 > FYI, we use internally this docker commands:
-`docker build -f ./apps/api/Dockerfile . -t api`
-`docker build -f ./apps/html/Dockerfile . -t html`
+> 
+> `docker build -f ./apps/api/Dockerfile . -t api`
+> 
+> `docker build -f ./apps/html/Dockerfile . -t html`
 
 ## If modifications are made to any project
 ```bash
